@@ -1,36 +1,74 @@
 ### ParseVCFs: functions for file conversion and mutation frequency calculation
 
-vcf = "sorghum_small_filtered.vcf"
-
 ## ConvertVCF: function for converting vcf to bed and CSV formats (Default = bed)
 ##             Returns bed or CSV file
 convertVCF <- function(vcf, format = "bed") {
   ## Read vcf lines
   con <- file(vcf, open = 'r')
-  
-  ## Convert to tab-separated bed file with Chromosome, position, allele change, and genotype
-  if(grepl("bed", format, fixed = TRUE) == TRUE | grepl("BED", format, fixed = TRUE) == TRUE) {
-    ## While loop to read vcf connection
-    while(length(lines <- readLines(con))) {
-      ## Header
-      
-    }
     
-  } else 
-    ## Convert to comma-separated file with Chromosome, position, allele change, and genotype
-    if(grepl("csv", format, fixed = TRUE) == TRUE | grepl("CSV", format, fixed = TRUE) == TRUE) {
-      print("WARN: Standard VCF contains commas in INFO fields.\nConverted file will only include SNPs and Indels.")
-      
-      
-      
-      
+  line_count = 0
+    
+  ## While loop to read vcf connection
+  while(length(lines <- readLines(con))) {
+    ## Define columns
+    fields <- strsplit(lines, '\t')
+    start_line <- 0
+    
+    ## Count useable lines, skipping the header
+    IS_FIRST <- TRUE
+    for(i in 1:length(lines)) {
+      if(grepl("#", fields[[i]]) == FALSE) {
+        if(IS_FIRST == TRUE) {
+          start_line <- i  ## Grab line number of first non-header line
+          line_count <- line_count + 1
+          IS_FIRST <- FALSE
+        } else {
+          line_count <- line_count + 1
+        }
+      }
     }
+      
+    ## Initialize new file, length of line count plus 1 for new header
+    new_file <- vector(length = line_count+1)
+    
+    total_length <- start_line + line_count
+    
+    ## Add converted lines to new file
+    for(i in start_line:length(fields)) {
+      ## Grab only the chromosome, start position, alt/ref, and genotype fields
+      ## Save to vector at index=line number
+      Chrom <- fields[[i]][1]
+      Pos <- fields[[i]][2]
+      Ref <- fields[[i]][4]
+      Alt <- fields[[i]][5]
+      GT <- fields[[i]][10]
+      
+      ## Convert to tab-separated bed file or CSV with Chromosome, position, allele change, and genotype
+      if(grepl("bed", format, fixed = TRUE) == TRUE | grepl("BED", format, fixed = TRUE) == TRUE) {
+        new_file[(start_line+2)-i] <- paste(Chrom, Pos, Ref, Alt, GT, sep = "\t")
+      } else
+        if(grepl("csv", format, fixed = TRUE) == TRUE | grepl("CSV", format, fixed = TRUE) == TRUE) {
+          new_file[(start_line+2)-i] <- paste(Chrom, Pos, Ref, Alt, GT, sep = ",")
+        }
+    }
+  }
+  
+  ## Set header as index 1/first line of new file
+  if(grepl("bed", format, fixed = TRUE) == TRUE | grepl("BED", format, fixed = TRUE) == TRUE) {
+    new_file[1] <- "CHROM\tPOS\tREF\tALT\tGT"
+  } else
+    if(grepl("csv", format, fixed = TRUE) == TRUE | grepl("CSV", format, fixed = TRUE) == TRUE) {
+      print("WARN: Standard VCF contains commas in INFO fields.\nConverted file will have additional commas in the genotype field.")
+      new_file[1] <- "CHROM,POS,REF,ALT,GT"
+    }
+  
+  return(new_file)
+  
 }
-
 
 ## OverallMutRates: function to calculate mutation frequencies for point mutations. 
 ##                  Returns vector list of mutation frequency with names = allele changes
-overallMutRate <- function(vcf) {
+overallMutRates <- function(vcf) {
 
   ## Open vcf connection for reading
   con <- file(vcf, open = 'r')
@@ -123,6 +161,3 @@ overallMutRate <- function(vcf) {
   return(Mutation_Freqs)  
   
 }
-
-overallMutRate(vcf)
-??float
