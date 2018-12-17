@@ -6,6 +6,5 @@ Authors@R: person("Matt", "Weber", role = c("aut", "cre"), email = "mrweber2@ill
 Author: Matt Weber [aut, cre]
 Maintainer: Matt Weber <mrweber2@illinois.edu>
 Description: This package contains functions to generate VCF statistics and convert parsed data to TSV.
-Imports: Rcpp
 Url: https://github.com/mrweber2/parseVCFs
 License: GPL-3
