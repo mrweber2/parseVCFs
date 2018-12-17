@@ -1,5 +1,5 @@
 # parseVCFs
-This is the repository for the development of an R package created for a final project in CPSC 499. The purpose is to parse and process VCF files in batch to produce useful output for downstream analysis.
+This is the repository for the development of an R package created for a final project in CPSC 499. The purpose is to parse and process VCF files to produce useful output for downstream analysis.
 
 ## convertVCF
 This function takes in a raw VCF file and converts to either bed or CSV format. The user specifies format as an option.
