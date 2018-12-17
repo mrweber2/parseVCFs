@@ -9,7 +9,6 @@ This function takes in a VCF file and computes the frequency of each specific si
 \usage{
 overallMutRates(vcf)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{vcf}{
 Input raw VCF file. Standard tab-separated variant file.
