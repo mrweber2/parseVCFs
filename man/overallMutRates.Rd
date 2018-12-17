@@ -18,7 +18,6 @@ Input raw VCF file. Standard tab-separated variant file.
 \value{
 \code{overallMutRates} returns a list where key names equal the allele change and values equal mutation frequency.
 }
-}
 \examples{
 ## Make sample vcf
 test_vcf = "##fileformat=VCFv4.2

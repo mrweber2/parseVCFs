@@ -20,7 +20,6 @@ Format to convert to. Choices are "bed|BED" or "csv|CSV".
 \value{
 \code{convertVCF} returns a vector in either bed or CSV format.
 }
-}
 \examples{
 ## Make sample vcf
 test_vcf = "##fileformat=VCFv4.2
