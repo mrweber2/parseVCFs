@@ -1,0 +1,11 @@
+Package: parseVCFs
+Version: 0.0
+Date: 2018-12-14
+Title: VCF Statistic Parsing and File Conversion
+Authors@R: person("Matt", "Weber", role = c("aut", "cre"), email = "mrweber2@illinois.edu")
+Author: Matt Weber [aut, cre]
+Maintainer: Matt Weber <mrweber2@illinois.edu>
+Description: This package contains functions to generate VCF statistics and convert parsed data to TSV.
+Imports: Rcpp
+Url: https://github.com/mrweber2/parseVCFs
+License: GPL-3
