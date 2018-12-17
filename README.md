@@ -5,16 +5,16 @@ This is the repository for the development of an R package created for a final p
 This function takes in a raw VCF file and converts to either bed or CSV format. The user specifies format as an option.
 
 usage:
-'''
+```
 convert(vcf, format="bed")
-'''
+```
 Returns a vector in bed or CSV format.
 
 ## OverallMutRates
 This function takes in a VCF file and computes the frequency of each specific single-point mutation out of all point mutations in the data set.
 
 Possible Mutations:
-'''
+```
 A->C
 A->G
 A->T
@@ -27,10 +27,10 @@ G->T
 T->A
 T->C
 T->G
-'''
+```
 
 usage:
-'''
+```
 OverallMutRates(vcf)
-'''
+```
 Returns a list where key names equal the allele change and values equal mutation frequency.
