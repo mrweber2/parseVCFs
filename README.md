@@ -10,7 +10,7 @@ convert(vcf, format="bed")
 ```
 Returns a vector in bed or CSV format.
 
-## OverallMutRates
+## overallMutRates
 This function takes in a VCF file and computes the frequency of each specific single-point mutation out of all point mutations in the data set.
 
 Possible Mutations:
@@ -31,6 +31,14 @@ T->G
 
 usage:
 ```
-OverallMutRates(vcf)
+overallMutRates(vcf)
 ```
 Returns a list where key names equal the allele change and values equal mutation frequency.
+
+## plotMutFreqs
+This function takes in the output list of point mutation frequencies from overallMutRates and plots a histogram of frequencies.
+
+usage:
+```
+plotMutFreqs(mutList)
+```

@@ -161,3 +161,18 @@ overallMutRates <- function(vcf) {
   return(Mutation_Freqs)  
   
 }
+
+## plotMutFreqs: function to plot the output of overallMutRates
+##               Returns a ggplot2 plot object
+plotMutFreqs <- function(mutList) {
+  
+  ## Convert input mutation list to data frame
+  mutFrame <- data.frame(snps = names(mutList), freqs = matrix(unlist(mutList)), stringsAsFactors = FALSE)
+  
+  ## Plot frequencies using ggplot2
+  mutPlot <- ggplot(mutFrame, aes(x = mutFrame$snps, y = mutFrame$freqs)) + geom_col(fill = "#FF6666") +
+    labs(title = "Frequency of Point Mutations") +
+    labs(x = "SNP", y = "Frequency")
+
+  return(mutPlot)
+}
