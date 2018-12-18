@@ -19,6 +19,6 @@ Input list of mutational frequencies from 0 to 1.00. List names are possible poi
 }
 \examples{
 mutList <- as.list(c(0.05, 0.2, 0.15, 0.05, 0.1, 0.15, 0.05, 0.05, 0.05, 0.05, 0.01, 0.09))
-names(multList) <- c("A2C", "A2G", "A2T", "C2A", "C2G", "C2T", "G2A", "G2C", "G2T", "T2A", "T2C", "T2G")
-plotMutFreqs(multList)
+names(mutList) <- c("A2C", "A2G", "A2T", "C2A", "C2G", "C2T", "G2A", "G2C", "G2T", "T2A", "T2C", "T2G")
+plotMutFreqs(mutList)
 }
