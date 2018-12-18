@@ -7,5 +7,5 @@ Author: Matt Weber [aut, cre]
 Maintainer: Matt Weber <mrweber2@illinois.edu>
 Description: This package contains functions to generate VCF statistics and convert parsed data to TSV.
 Url: https://github.com/mrweber2/parseVCFs
-Depends: ggplot2
+Imports: ggplot2
 License: GPL-3

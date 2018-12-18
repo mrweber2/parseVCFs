@@ -62,6 +62,8 @@ convertVCF <- function(vcf, format = "bed") {
       new_file[1] <- "CHROM,POS,REF,ALT,GT"
     }
   
+  close(con)
+  
   return(new_file)
   
 }
@@ -157,6 +159,8 @@ overallMutRates <- function(vcf) {
     ## Then save each percent mutation to the list
     Mutation_Freqs[[i]] <- as.numeric(eval(parse(text = names(Mutation_Freqs[i])))) / Total_Point_Mutations
   }
+  
+  close(con)
   
   return(Mutation_Freqs)  
   
